@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Procesos VPMN - WebflowLATAM</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .process-box {
+            background: white;
+            border: 2px solid #0066FF;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 8px;
+            box-shadow: 0 2px 8px rgba(0, 102, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .process-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+        }
+        
+        .process-arrow {
+            color: #0066FF;
+            font-size: 24px;
+            text-align: center;
+            margin: 8px 0;
+        }
+        
+        .decision-box {
+            background: #FFC107;
+            border: 2px solid #FF6B35;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px;
+            font-weight: 600;
+        }
+        
+        .value-box {
+            background: linear-gradient(135deg, #00C853 0%, #0066FF 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 8px;
+            font-weight: 600;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 24px 0;
+        }
+        
+        .flow-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        
+        .flow-branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 16px;
+        }
+        
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        
+        .table-custom th {
+            background: #0066FF;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .table-custom td {
+            padding: 12px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .table-custom tr:hover {
+            background: #F5F5F5;
+        }
+        
+        .metric-badge {
+            display: inline-block;
+            background: #E6F2FF;
+            color: #0066FF;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 4px;
+        }
+        
+        .nav-link {
+            color: #666666;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            background: #E6F2FF;
+            color: #0066FF;
+        }
+        
+        .nav-link.active {
+            background: #0066FF;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .flow-row {
+                flex-direction: column;
+            }
+            
+            .process-box {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">V</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">VPMN Map</span>
+                </div>
+                <div class="flex space-x-4 overflow-x-auto">
+                    <a href="#value-prop" class="nav-link">Propuesta Valor</a>
+                    <a href="#journey" class="nav-link">Customer Journey</a>
+                    <a href="#processes" class="nav-link">Procesos</a>
+                    <a href="#metrics" class="nav-link">Métricas</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-br from-primary to-primary-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Mapa de Procesos VPMN</h1>
+            <p class="text-xl text-white/90">Value Proposition Map & Process Model - WebflowLATAM</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- 1. Value Proposition Map -->
+        <section id="value-prop" class="section-card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">1. Mapa de Propuesta de Valor</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Cliente -->
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">👥 Cliente (Quién)</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>• Diseñadores Freelance</li>
+                        <li>• Agencias de diseño</li>
+                        <li>• Empresas (clientes)</li>
+                        <li>• Desarrolladores Webflow</li>
+                    </ul>
+                </div>
+                
+                <!-- Valor -->
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">✨ Valor (Qué obtiene)</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>• Educación en español</li>
+                        <li>• Certificaciones reconocidas</li>
+                        <li>• Herramientas de optimización</li>
+                        <li>• Marketplace transparente</li>
+                        <li>• Comunidad activa</li>
+                    </ul>
+                </div>
+                
+                <!-- Dolor -->
+                <div class="bg-red-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">😰 Dolor (Problema)</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>• Falta de recursos en español</li>
+                        <li>• SEO complejo</li>
+                        <li>• Sin monitoreo continuo</li>
+                        <li>• Escasez de talento</li>
+                        <li>• Costos elevados</li>
+                        <li>• Integraciones difíciles</li>
+                    </ul>
+                </div>
+                
+                <!-- Gain -->
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">🚀 Gain (Beneficio)</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>• Aprende más rápido</li>
+                        <li>• Mejora ranking y conversión</li>
+                        <li>• Optimiza basado en datos</li>
+                        <li>• Encuentra trabajo/candidatos</li>
+                        <li>• Ahorra tiempo y dinero</li>
+                        <li>• Integra fácilmente</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Customer Journey Map -->
+        <section id="journey" class="section-card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">2. Customer Journey Map</h2>
+            
+            <div class="overflow-x-auto">
+                <div class="flex space-x-4 min-w-max pb-4">
+                    <!-- Awareness -->
+                    <div class="bg-blue-100 p-6 rounded-lg min-w-[200px]">
+                        <h3 class="font-bold text-lg mb-3">🔍 Awareness</h3>
+                        <div class="space-y-2 text-sm">
+                            <p class="font-semibold">Touchpoints:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Google</li>
+                                <li>Redes sociales</li>
+                                <li>Referral</li>
+                            </ul>
+                            <p class="font-semibold mt-3">Emociones:</p>
+                            <p>😕 Frustrado<br>🔍 Buscando</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Consider -->
+                    <div class="bg-yellow-100 p-6 rounded-lg min-w-[200px]">
+                        <h3 class="font-bold text-lg mb-3">🤔 Consider</h3>
+                        <div class="space-y-2 text-sm">
+                            <p class="font-semibold">Touchpoints:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Landing</li>
+                                <li>Blog</li>
+                                <li>Webinars</li>
+                                <li>Reviews</li>
+                            </ul>
+                            <p class="font-semibold mt-3">Emociones:</p>
+                            <p>🤔 Curioso<br>📚 Aprendiendo</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Decide -->
+                    <div class="bg-orange-100 p-6 rounded-lg min-w-[200px]">
+                        <h3 class="font-bold text-lg mb-3">💰 Decide</h3>
+                        <div class="space-y-2 text-sm">
+                            <p class="font-semibold">Touchpoints:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Compara</li>
+                                <li>Trial</li>
+                                <li>Demo</li>
+                                <li>Pricing</li>
+                            </ul>
+                            <p class="font-semibold mt-3">Emociones:</p>
+                            <p>😰 Ansioso<br>💰 Duda</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Activate -->
+                    <div class="bg-green-100 p-6 rounded-lg min-w-[200px]">
+                        <h3 class="font-bold text-lg mb-3">✨ Activate</h3>
+                        <div class="space-y-2 text-sm">
+                            <p class="font-semibold">Touchpoints:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Onboarding</li>
+                                <li>Primer éxito</li>
+                                <li>Soporte</li>
+                            </ul>
+                            <p class="font-semibold mt-3">Emociones:</p>
+                            <p>😊 Entusiasmado<br>✨ Logro</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Retain -->
+                    <div class="bg-purple-100 p-6 rounded-lg min-w-[200px]">
+                        <h3 class="font-bold text-lg mb-3">😍 Retain</h3>
+                        <div class="space-y-2 text-sm">
+                            <p class="font-semibold">Touchpoints:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Dashboard</li>
+                                <li>Notificaciones</li>
+                                <li>Comunidad</li>
+                                <li>Contenido</li>
+                            </ul>
+                            <p class="font-semibold mt-3">Emociones:</p>
+                            <p>😍 Leal<br>🚀 Creciendo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Business Processes -->
+        <section id="processes" class="section-card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">3. Procesos de Negocio Principales</h2>
+            
+            <!-- Process 1: Acquisition -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">3.1 Adquisición y Activación</h3>
+                <div class="flow-container">
+                    <div class="process-box">
+                        <strong>Usuario Descubre<br>WebflowLATAM</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Landing Page<br>(Academia)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>CTA: "Comenzar Gratis"</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Registro<br>(Email/Social)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Onboarding<br>(Selección perfil)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Dashboard<br>Personalizado</strong>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-branch">
+                            <div class="process-box bg-green-50">
+                                <strong>Free User<br>(3 cursos)</strong>
+                            </div>
+                        </div>
+                        <div class="flow-branch">
+                            <div class="process-box bg-blue-50">
+                                <strong>Paid User<br>(Ilimitado)</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Process 2: Learning -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">3.2 Aprendizaje y Certificación</h3>
+                <div class="flow-container">
+                    <div class="process-box">
+                        <strong>Usuario Accede<br>a Curso</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Selecciona Curso<br>(Catálogo/Filtros)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Preview Gratis<br>(Primer módulo)</strong>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-branch">
+                            <div class="decision-box">
+                                Continúa Free<br>(Limitado)
+                            </div>
+                        </div>
+                        <div class="flow-branch">
+                            <div class="decision-box">
+                                Upgrade a Pro<br>(CTA)
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            <div class="process-box">
+                                <strong>Acceso Completo<br>(Todos módulos)</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Progreso del Curso<br>(Videos, Ejercicios)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Completa Curso<br>(Badges, Logros)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Examen Final<br>(Certificación)</strong>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-branch">
+                            <div class="value-box">
+                                Aprobado<br>(≥80%)
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            <div class="process-box bg-green-100">
+                                <strong>Certificado<br>Digital Emitido</strong>
+                            </div>
+                        </div>
+                        <div class="flow-branch">
+                            <div class="decision-box">
+                                No Aprobado<br>(<80%)
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            <div class="process-box">
+                                <strong>Reintento<br>(Máx. 3 veces)</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Process 3: SEO Optimization -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">3.3 Optimización SEO</h3>
+                <div class="flow-container">
+                    <div class="process-box">
+                        <strong>Usuario Conecta<br>Webflow</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>OAuth Webflow<br>(Autorización)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Selecciona Sitio<br>(Lista proyectos)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Ejecuta Auditoría<br>SEO Automatizada</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Análisis Completo<br>(Core Web Vitals,<br>Schema, etc.)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Reporte Generado<br>(Issues priorizados<br>con IA)</strong>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-branch">
+                            <div class="process-box bg-red-50">
+                                <strong>Issues Críticos<br>(Alta prioridad)</strong>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            <div class="process-box">
+                                <strong>Plan de Acción<br>Personalizado</strong>
+                            </div>
+                        </div>
+                        <div class="flow-branch">
+                            <div class="process-box bg-yellow-50">
+                                <strong>Issues Menores<br>(Baja prioridad)</strong>
+                            </div>
+                            <div class="process-arrow">↓</div>
+                            <div class="process-box">
+                                <strong>Sugerencias<br>Opcionales</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Usuario Aplica<br>Optimizaciones</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-box">
+                        <strong>Re-auditoría<br>(Monitoreo continuo)</strong>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="value-box">
+                        Dashboard Analytics<br>(Métricas en tiempo real)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Value Flow Maps -->
+        <section class="section-card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">4. Mapa de Flujo de Valor por Módulo</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Academia -->
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">📚 Academia</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white p-3 rounded">
+                            <strong>INPUT:</strong> Contenido, Expertos, Comunidad
+                        </div>
+                        <div class="text-center text-2xl">→</div>
+                        <div class="bg-white p-3 rounded">
+                            <strong>PROCESO:</strong> Educación, Enseñanza, Colaboración
+                        </div>
+                        <div class="text-center text-2xl">→</div>
+                        <div class="bg-green-100 p-3 rounded">
+                            <strong>OUTPUT:</strong> Conocimiento, Habilidades, Red
+                        </div>
+                        <div class="mt-4 p-3 bg-yellow-100 rounded">
+                            <strong>VALOR:</strong> Certificaciones, Mejora carrera, Oportunidades
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Optimizador -->
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">⚡ Optimizador</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white p-3 rounded">
+                            <strong>INPUT:</strong> Sitio Webflow, Datos Analytics, Métricas
+                        </div>
+                        <div class="text-center text-2xl">→</div>
+                        <div class="bg-white p-3 rounded">
+                            <strong>PROCESO:</strong> Auditoría SEO, Análisis IA, Monitoreo
+                        </div>
+                        <div class="text-center text-2xl">→</div>
+                        <div class="bg-green-100 p-3 rounded">
+                            <strong>OUTPUT:</strong> Reporte, Recomendaciones, Dashboard
+                        </div>
+                        <div class="mt-4 p-3 bg-yellow-100 rounded">
+                            <strong>VALOR:</strong> Mejor SEO, Más tráfico, Más conversiones
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Marketplace -->
+                <div class="bg-purple-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">🏪 Marketplace</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white p-3 rounded">
+                            <strong>INPUT:</strong> Necesidad, Proyecto, Pago
+                        </div>
+                        <div class="text-center text-2xl">→</div>
+                        <div class="bg-white p-3 rounded">
+                            <strong>PROCESO:</strong> Matching IA, Gestión, Escrow
+                        </div>
+                        <div class="text-center text-2xl">→</div>
+                        <div class="bg-green-100 p-3 rounded">
+                            <strong>OUTPUT:</strong> Propuestas, Entrega, Transacción
+                        </div>
+                        <div class="mt-4 p-3 bg-yellow-100 rounded">
+                            <strong>VALOR:</strong> Proyectos completados, Talento, Transparencia
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Workspace -->
+                <div class="bg-orange-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">👥 Workspace</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white p-3 rounded">
+                            <strong>INPUT:</strong> Equipo, Feedback, Versiones
+                        </div>
+                        <div class="text-center text-2xl">→</div>
+                        <div class="bg-white p-3 rounded">
+                            <strong>PROCESO:</strong> Colaboración, Aprobaciones, Control
+                        </div>
+                        <div class="text-center text-2xl">→</div>
+                        <div class="bg-green-100 p-3 rounded">
+                            <strong>OUTPUT:</strong> Producto Final, Calidad, Historial
+                        </div>
+                        <div class="mt-4 p-3 bg-yellow-100 rounded">
+                            <strong>VALOR:</strong> Eficiencia, Menos errores, Mejor comunicación
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Moments of Truth -->
+        <section class="section-card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">5. Momentos de Verdad</h2>
+            
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Momento de Verdad</th>
+                        <th>Touchpoint</th>
+                        <th>Acción Requerida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Primer Contacto</strong></td>
+                        <td>Landing Page</td>
+                        <td>CTA claro, valor inmediato</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Registro</strong></td>
+                        <td>Formulario</td>
+                        <td>Proceso simple, social login</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Primer Éxito</strong></td>
+                        <td>Onboarding</td>
+                        <td>Logro rápido, celebración</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Primer Problema</strong></td>
+                        <td>Soporte</td>
+                        <td>Resolución rápida y efectiva</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Upgrade</strong></td>
+                        <td>Límite alcanzado</td>
+                        <td>Valor claro, sin fricción</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6. Certificación</strong></td>
+                        <td>Examen</td>
+                        <td>Reconocimiento, compartir fácil</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7. Renovación</strong></td>
+                        <td>Fin de período</td>
+                        <td>Recordatorio, incentivo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 6. Metrics and KPIs -->
+        <section id="metrics" class="section-card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">6. Métricas y KPIs por Proceso</h2>
+            
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Proceso</th>
+                        <th>Métricas Clave</th>
+                        <th>Objetivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Adquisición</strong></td>
+                        <td>
+                            <span class="metric-badge">CAC</span>
+                            <span class="metric-badge">Conversion Rate</span>
+                        </td>
+                        <td>&lt;$50, &gt;5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Activación</strong></td>
+                        <td>
+                            <span class="metric-badge">Time to First Value</span>
+                        </td>
+                        <td>&lt;24 horas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aprendizaje</strong></td>
+                        <td>
+                            <span class="metric-badge">Course Completion Rate</span>
+                        </td>
+                        <td>&gt;60%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Certificación</strong></td>
+                        <td>
+                            <span class="metric-badge">Pass Rate</span>
+                            <span class="metric-badge">Cert. Issued</span>
+                        </td>
+                        <td>&gt;80%, &gt;1000/mes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optimización</strong></td>
+                        <td>
+                            <span class="metric-badge">SEO Score Improvement</span>
+                        </td>
+                        <td>+20 puntos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketplace</strong></td>
+                        <td>
+                            <span class="metric-badge">Match Success Rate</span>
+                        </td>
+                        <td>&gt;70%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Soporte</strong></td>
+                        <td>
+                            <span class="metric-badge">First Response Time</span>
+                        </td>
+                        <td>&lt;2 horas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retención</strong></td>
+                        <td>
+                            <span class="metric-badge">Churn Rate</span>
+                            <span class="metric-badge">LTV</span>
+                        </td>
+                        <td>&lt;5%, &gt;$300</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 7. Complete Value Flow -->
+        <section class="section-card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">7. Flujo de Valor Completo</h2>
+            
+            <div class="flow-container">
+                <div class="process-box bg-blue-100 text-center" style="width: 200px;">
+                    <strong>USUARIO</strong>
+                </div>
+                <div class="flow-row" style="margin-top: 24px;">
+                    <div class="flow-branch">
+                        <div class="process-box bg-blue-50">
+                            <strong>ACADEMIA</strong>
+                        </div>
+                        <div class="process-arrow">↓</div>
+                        <div class="process-box bg-green-50">
+                            <strong>CONOCIMIENTO</strong>
+                        </div>
+                    </div>
+                    <div class="flow-branch">
+                        <div class="process-box bg-green-50">
+                            <strong>OPTIMIZADOR</strong>
+                        </div>
+                        <div class="process-arrow">↓</div>
+                        <div class="process-box bg-green-50">
+                            <strong>OPTIMIZACIÓN</strong>
+                        </div>
+                    </div>
+                    <div class="flow-branch">
+                        <div class="process-box bg-purple-50">
+                            <strong>MARKETPLACE</strong>
+                        </div>
+                        <div class="process-arrow">↓</div>
+                        <div class="process-box bg-green-50">
+                            <strong>PROYECTOS</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-arrow" style="margin-top: 24px;">↓</div>
+                <div class="value-box text-center" style="width: 300px; margin: 24px auto;">
+                    <strong>VALOR GENERADO</strong>
+                </div>
+                <div class="flow-row" style="margin-top: 24px;">
+                    <div class="flow-branch">
+                        <div class="process-box bg-yellow-100">
+                            <strong>CERTIFICACIÓN</strong>
+                        </div>
+                    </div>
+                    <div class="flow-branch">
+                        <div class="process-box bg-yellow-100">
+                            <strong>MEJOR SEO</strong>
+                        </div>
+                    </div>
+                    <div class="flow-branch">
+                        <div class="process-box bg-yellow-100">
+                            <strong>INGRESOS</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-arrow" style="margin-top: 24px;">↓</div>
+                <div class="value-box text-center" style="width: 400px; margin: 24px auto;">
+                    <strong>CRECIMIENTO PROFESIONAL</strong>
+                </div>
+                <div class="process-arrow" style="margin-top: 24px;">↓</div>
+                <div class="value-box text-center" style="width: 350px; margin: 24px auto;">
+                    <strong>RETENCIÓN Y REFERIDOS</strong>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">Mapa de Procesos VPMN - WebflowLATAM v1.0</p>
+            <p class="text-gray-500 text-sm mt-2">Value Proposition Map & Process Model</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for smooth scrolling -->
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Highlight active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

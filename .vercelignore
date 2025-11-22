@@ -1,0 +1,25 @@
+# Documentation
+*.md
+!README.md
+
+# Development files
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# Build artifacts
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+

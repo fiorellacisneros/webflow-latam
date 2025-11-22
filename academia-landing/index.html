@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende Webflow en español. Cursos, certificaciones y comunidad para diseñadores y desarrolladores en Latinoamérica.">
+    <title>Academia WebflowLATAM - Aprende Webflow en Español</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#0066FF',
+                        'primary-dark': '#0052CC',
+                        'primary-light': '#E6F2FF',
+                        'secondary-green': '#00C853',
+                        'secondary-orange': '#FF6B35',
+                        'secondary-yellow': '#FFC107',
+                        'gray-dark': '#1A1A1A',
+                        'gray-medium': '#666666',
+                        'gray-light': '#F5F5F5'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans antialiased">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">W</span>
+                        </div>
+                        <span class="text-xl font-bold text-gray-dark">WebflowLATAM</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#cursos" class="text-gray-medium hover:text-primary transition-colors">Cursos</a>
+                    <a href="#certificaciones" class="text-gray-medium hover:text-primary transition-colors">Certificaciones</a>
+                    <a href="#comunidad" class="text-gray-medium hover:text-primary transition-colors">Comunidad</a>
+                    <a href="#precios" class="text-gray-medium hover:text-primary transition-colors">Precios</a>
+                    <a href="#" class="text-gray-medium hover:text-primary transition-colors">Iniciar Sesión</a>
+                    <a href="#registro" class="btn-primary">Comenzar Gratis</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-dark">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#cursos" class="block py-2 text-gray-medium hover:text-primary">Cursos</a>
+                <a href="#certificaciones" class="block py-2 text-gray-medium hover:text-primary">Certificaciones</a>
+                <a href="#comunidad" class="block py-2 text-gray-medium hover:text-primary">Comunidad</a>
+                <a href="#precios" class="block py-2 text-gray-medium hover:text-primary">Precios</a>
+                <a href="#" class="block py-2 text-gray-medium hover:text-primary">Iniciar Sesión</a>
+                <a href="#registro" class="block btn-primary text-center">Comenzar Gratis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-primary-light to-white py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div>
+                    <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm mb-6">
+                        <span class="text-secondary-green text-sm font-semibold">✨ Nuevo: Bootcamp Intensivo</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-dark mb-6 leading-tight">
+                        Aprende <span class="text-primary">Webflow</span> en Español
+                    </h1>
+                    
+                    <p class="text-xl text-gray-medium mb-8 leading-relaxed">
+                        La plataforma de educación más completa para diseñadores y desarrolladores en Latinoamérica. 
+                        Cursos, certificaciones y una comunidad que te apoya en cada paso.
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="#registro" class="btn-primary-large">
+                            Explorar Cursos Gratis
+                        </a>
+                        <a href="#video-preview" class="btn-secondary-large">
+                            <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+                            </svg>
+                            Ver Video Intro
+                        </a>
+                    </div>
+                    
+                    <!-- Social Proof -->
+                    <div class="flex items-center space-x-6 text-sm text-gray-medium">
+                        <div>
+                            <div class="font-bold text-gray-dark text-lg">10,000+</div>
+                            <div>Estudiantes</div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-dark text-lg">50+</div>
+                            <div>Cursos</div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-dark text-lg">4.9/5</div>
+                            <div>Rating</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Image/Video -->
+                <div class="relative">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8">
+                        <div class="aspect-video bg-gray-light rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-16 h-16 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+                            </svg>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-2 bg-gray-light rounded-full"></div>
+                            <div class="h-2 bg-gray-light rounded-full w-3/4"></div>
+                        </div>
+                    </div>
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-secondary-yellow rounded-full opacity-20 blur-2xl"></div>
+                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-primary rounded-full opacity-10 blur-3xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">100% en Español</h3>
+                    <p class="text-gray-medium">Todo el contenido creado específicamente para el mercado latinoamericano</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">Certificaciones Reconocidas</h3>
+                    <p class="text-gray-medium">Obtén certificados verificables que validan tus habilidades</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">Comunidad Activa</h3>
+                    <p class="text-gray-medium">Conecta con otros estudiantes y mentores en nuestra comunidad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cursos Section -->
+    <section id="cursos" class="py-20 bg-gray-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-dark mb-4">Explora Nuestros Cursos</h2>
+                <p class="text-xl text-gray-medium max-w-2xl mx-auto">
+                    Desde fundamentos hasta técnicas avanzadas. Aprende a tu ritmo con contenido práctico y actualizado.
+                </p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active">Todos</button>
+                <button class="filter-btn">Principiante</button>
+                <button class="filter-btn">Intermedio</button>
+                <button class="filter-btn">Avanzado</button>
+                <button class="filter-btn">Certificación</button>
+            </div>
+            
+            <!-- Course Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course Card 1 -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <div class="badge badge-beginner">Principiante</div>
+                        <div class="play-overlay">
+                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-gray-medium">Webflow Basics</span>
+                            <div class="flex items-center text-secondary-yellow">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+                                <span class="ml-1 text-sm font-semibold">4.9</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-dark mb-2">Fundamentos de Webflow</h3>
+                        <p class="text-gray-medium mb-4">Aprende los conceptos básicos de Webflow desde cero. Perfecto para principiantes.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-medium mb-4">
+                            <span>📹 12 videos</span>
+                            <span>⏱️ 4 horas</span>
+                        </div>
+                        <a href="#" class="btn-secondary w-full text-center">Ver Preview</a>
+                    </div>
+                </div>
+                
+                <!-- Course Card 2 -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <div class="badge badge-intermediate">Intermedio</div>
+                        <div class="play-overlay">
+                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-gray-medium">SEO & Performance</span>
+                            <div class="flex items-center text-secondary-yellow">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+                                <span class="ml-1 text-sm font-semibold">4.8</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-dark mb-2">SEO Avanzado para Webflow</h3>
+                        <p class="text-gray-medium mb-4">Optimiza tus sitios para motores de búsqueda y mejora el rendimiento.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-medium mb-4">
+                            <span>📹 18 videos</span>
+                            <span>⏱️ 6 horas</span>
+                        </div>
+                        <a href="#" class="btn-secondary w-full text-center">Ver Preview</a>
+                    </div>
+                </div>
+                
+                <!-- Course Card 3 -->
+                <div class="course-card featured">
+                    <div class="course-image">
+                        <div class="badge badge-certification">Certificación</div>
+                        <div class="play-overlay">
+                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-gray-medium">Bootcamp Completo</span>
+                            <div class="flex items-center text-secondary-yellow">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+                                <span class="ml-1 text-sm font-semibold">5.0</span>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-dark mb-2">Webflow Expert Certification</h3>
+                        <p class="text-gray-medium mb-4">Programa completo con certificación oficial. Domina Webflow de principio a fin.</p>
+                        <div class="flex items-center justify-between text-sm text-gray-medium mb-4">
+                            <span>📹 50+ videos</span>
+                            <span>⏱️ 40 horas</span>
+                        </div>
+                        <a href="#" class="btn-primary w-full text-center">Comenzar Ahora</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View All CTA -->
+            <div class="text-center mt-12">
+                <a href="#" class="btn-secondary-large">Ver Todos los Cursos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificaciones Section -->
+    <section id="certificaciones" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-dark mb-6">Certificaciones Reconocidas</h2>
+                    <p class="text-xl text-gray-medium mb-8">
+                        Valida tus habilidades con certificaciones verificables que reconocen las empresas en Latinoamérica.
+                    </p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center mt-1">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-dark mb-1">Certificado Digital Verificable</h3>
+                                <p class="text-gray-medium">Comparte tu certificado en LinkedIn y tu portfolio</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center mt-1">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-dark mb-1">Reconocimiento en la Industria</h3>
+                                <p class="text-gray-medium">Agencias y empresas reconocen nuestras certificaciones</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center mt-1">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-bold text-gray-dark mb-1">Badges y Logros</h3>
+                                <p class="text-gray-medium">Gana badges al completar módulos y muestra tu progreso</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#registro" class="btn-primary-large">Obtener Certificación</a>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 shadow-2xl">
+                        <div class="bg-white rounded-lg p-8 text-center">
+                            <div class="w-24 h-24 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-dark mb-2">Webflow Expert</h3>
+                            <p class="text-gray-medium mb-4">Certificado de Especialista</p>
+                            <div class="border-t pt-4">
+                                <p class="text-sm text-gray-medium">Verificado por WebflowLATAM</p>
+                                <p class="text-xs text-gray-medium mt-2">Certificado #WF-2025-001234</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comunidad Section -->
+    <section id="comunidad" class="py-20 bg-gray-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-dark mb-4">Únete a Nuestra Comunidad</h2>
+                <p class="text-xl text-gray-medium max-w-2xl mx-auto">
+                    Conecta con otros estudiantes, comparte proyectos y obtén ayuda de mentores expertos.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-sm">
+                    <div class="w-12 h-12 bg-primary-light rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">Foros Activos</h3>
+                    <p class="text-gray-medium mb-4">Pregunta y responde en nuestra comunidad de más de 5,000 miembros</p>
+                    <a href="#" class="text-primary font-semibold hover:underline">Explorar Foros →</a>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-sm">
+                    <div class="w-12 h-12 bg-primary-light rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">Grupos de Estudio</h3>
+                    <p class="text-gray-medium mb-4">Únete a grupos por nivel y aprende junto a otros estudiantes</p>
+                    <a href="#" class="text-primary font-semibold hover:underline">Ver Grupos →</a>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-sm">
+                    <div class="w-12 h-12 bg-primary-light rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-dark mb-2">Mentoría 1:1</h3>
+                    <p class="text-gray-medium mb-4">Sesiones personalizadas con expertos (disponible en plan Pro)</p>
+                    <a href="#" class="text-primary font-semibold hover:underline">Saber Más →</a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#registro" class="btn-primary-large">Unirse a la Comunidad</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precios Section -->
+    <section id="precios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-dark mb-4">Planes que se Adaptan a Ti</h2>
+                <p class="text-xl text-gray-medium">Elige el plan perfecto para tu nivel y objetivos</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-dark mb-2">Free</h3>
+                        <div class="text-4xl font-bold text-gray-dark mb-1">$0</div>
+                        <p class="text-gray-medium">Para siempre</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">3 cursos gratuitos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Acceso a comunidad básica</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Recursos descargables</span>
+                        </li>
+                    </ul>
+                    <a href="#registro" class="btn-secondary w-full text-center">Comenzar Gratis</a>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="pricing-card featured">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <span class="bg-secondary-orange text-white px-4 py-1 rounded-full text-sm font-semibold">Más Popular</span>
+                    </div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-dark mb-2">Pro</h3>
+                        <div class="text-4xl font-bold text-gray-dark mb-1">$29</div>
+                        <p class="text-gray-medium">por mes</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Cursos ilimitados</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Certificaciones incluidas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Mentoría 1:1 mensual</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Soporte prioritario</span>
+                        </li>
+                    </ul>
+                    <a href="#registro" class="btn-primary w-full text-center">Elegir Plan Pro</a>
+                </div>
+                
+                <!-- Agency Plan -->
+                <div class="pricing-card">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-dark mb-2">Agency</h3>
+                        <div class="text-4xl font-bold text-gray-dark mb-1">$99</div>
+                        <p class="text-gray-medium">por mes</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Todo lo de Pro</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Hasta 10 usuarios</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Onboarding dedicado</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-secondary-green mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-medium">Soporte 24/7</span>
+                        </li>
+                    </ul>
+                    <a href="#registro" class="btn-secondary w-full text-center">Contactar Ventas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final Section -->
+    <section id="registro" class="py-20 bg-gradient-to-br from-primary to-primary-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                ¿Listo para Dominar Webflow?
+            </h2>
+            <p class="text-xl text-white/90 mb-8">
+                Únete a miles de estudiantes que ya están transformando sus carreras
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="btn-white-large">Comenzar Gratis</a>
+                <a href="#precios" class="btn-outline-white-large">Ver Planes</a>
+            </div>
+            <p class="text-white/80 text-sm mt-6">
+                Sin tarjeta de crédito • Cancela cuando quieras
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">W</span>
+                        </div>
+                        <span class="text-xl font-bold">WebflowLATAM</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        La plataforma de educación más completa para Webflow en Latinoamérica.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Producto</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#cursos" class="hover:text-white transition-colors">Cursos</a></li>
+                        <li><a href="#certificaciones" class="hover:text-white transition-colors">Certificaciones</a></li>
+                        <li><a href="#comunidad" class="hover:text-white transition-colors">Comunidad</a></li>
+                        <li><a href="#precios" class="hover:text-white transition-colors">Precios</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Recursos</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Guías</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Webinars</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Soporte</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Términos</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © 2025 WebflowLATAM. Todos los derechos reservados.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+

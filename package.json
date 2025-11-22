@@ -1,0 +1,23 @@
+{
+  "name": "webflowlatam",
+  "version": "1.0.0",
+  "description": "WebflowLATAM Platform - Academia Landing & VPMN Maps",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "webflow",
+    "latam",
+    "education",
+    "landing-page"
+  ],
+  "author": "WebflowLATAM",
+  "license": "MIT",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.x"
+  }
+}
+
